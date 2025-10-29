@@ -27,14 +27,17 @@ var compareCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
+		var responseType string
 		var prompt *genai.Part
 		if detailed {
 			prompt = genai.NewPartFromText("You are an expert photography judge. Compare these two photos in detail. Which one is 'best' based on composition, color, lighting, and overall emotional impact Explain your reasoning clearly.")
+			responseType = "detailed"
 		} else {
 			prompt = genai.NewPartFromText("You are an expert photography judge. Compare these two photos and decide which one is 'best' based on composition, color, lighting, and overall emotion impact. Provide a brief explanation for your choice.")
+			responseType = "summary"
 		}
 
-		fmt.Println("--- 📸 Comparing Images... ---")
+		fmt.Printf("--- 📸 Comparing Images (%s)... ---\n", responseType)
 		generateAndPrint(prompt, img1, img2)
 	},
 }

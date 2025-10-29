@@ -28,7 +28,6 @@ var rootCmd = &cobra.Command{
 
 		// Load environment variables from the specified .env file (if it exists, else use system env vars)
 		_ = godotenv.Load(envFile)
-		fmt.Println(envFile) // TODO REmove
 
 		apiKey := os.Getenv("GEMINI_API_KEY")
 		if apiKey == "" {
